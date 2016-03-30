@@ -122,6 +122,10 @@ AC_DEFUN([IT_SET_OS_DIRS],
       BUILD_OS_DIR=bsd
       OS_PATH=
       ;;
+    *amigaos*)
+      BUILD_OS_DIR=amigaos
+      OS_PATH=
+      ;;
     *)
       AC_MSG_ERROR([unsupported operating system ${host_os}])
       ;;
