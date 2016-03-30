@@ -1,0 +1,25 @@
+--- openjdk-boot.orig/jdk/src/share/classes/sun/security/ssl/ServerHandshaker.java.old	2015-04-03 20:33:29.164024020 +0100
++++ openjdk-boot/jdk/src/share/classes/sun/security/ssl/ServerHandshaker.java	2015-04-03 20:33:38.840136632 +0100
+@@ -1850,7 +1850,7 @@
+                     return Integer.parseInt(s, radix);
+                 } else {
+                     long ell = Long.parseLong(s, radix);
+-                    if ((ell & 0xffff_ffff_0000_0000L) == 0) {
++                    if ((ell & 0xffffffff00000000L) == 0) {
+                         return (int) ell;
+                     } else {
+                         throw new
+diff -Nru openjdk-boot.orig/jdk/src/share/classes/com/sun/jndi/ldap/Connection.java openjdk-boot/jdk/src/share/classes/com/sun/jndi/ldap/Connection.java
+--- openjdk-boot.orig/jdk/src/share/classes/com/sun/jndi/ldap/Connection.java	2015-10-19 08:58:37.000000000 +0100
++++ openjdk-boot/jdk/src/share/classes/com/sun/jndi/ldap/Connection.java	2015-10-20 02:41:38.769878548 +0100
+@@ -471,8 +471,8 @@
+                             // available
+                             ldr.wait(readTimeout - elapsedMilli);
+                             elapsedNano += (System.nanoTime() - beginNano);
+-                            elapsedMilli += elapsedNano / 1000_000;
+-                            elapsedNano %= 1000_000;
++                            elapsedMilli += elapsedNano / 1000000;
++                            elapsedNano %= 1000000;
+ 
+                         } else {
+                             // no timeout is set so we wait infinitely until
